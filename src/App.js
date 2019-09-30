@@ -35,7 +35,9 @@ class App extends Component {
       return (
         <li key={index}>
           <b>
-            {message.from}: {message.body}
+            {message.from}: {message.body.added}
+            <br></br>
+            {message.from}: {message.body.result}
           </b>
         </li>
       );

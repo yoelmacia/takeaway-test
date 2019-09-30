@@ -16,11 +16,19 @@ const io = socketIO(server);
 io.on("connection", socket => {
   console.log("User connected");
 
-  socket.on("message", body => {
-    socket.broadcast.emit("message", {
-      body,
-      from: socket.id.slice(8)
-    });
+  socket.on("message", result => {
+    const body = calculateValueBot(result);
+    setTimeout(function() {
+      socket.emit("message", {
+        body,
+        from: socket.id.slice(8)
+      });
+    }, 2000);
+
+    // socket.broadcast.emit("message", {
+    //   body,
+    //   from: socket.id.slice(8)
+    // });
   });
 
   // disconnect is fired when a client leaves the server
@@ -30,3 +38,16 @@ io.on("connection", socket => {
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
+
+// Functions
+
+function calculateValueBot(body) {
+  const random = Math.floor(Math.random() * 3) - 1;
+  const num = Math.floor([(random + parseInt(body)) / 3]);
+  const resultNumber = {
+    added: "[(" + random + "+" + parseInt(body) + ") / 3] = " + num,
+    result: num
+  };
+  console.log(resultNumber);
+  return resultNumber;
+}
