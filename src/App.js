@@ -12,21 +12,41 @@ class App extends Component {
   componentDidMount() {
     this.socket = socketIOClient("http://localhost:4001");
     this.socket.on("message", message => {
-      console.log(message);
       this.setState({ messages: [message, ...this.state.messages] });
     });
   }
 
   send = event => {
-    const body = event.target.value;
-    if (event.keyCode === 13 && body) {
+    console.log(event);
+    if (event === "start") {
+      const body = {
+        added: "",
+        result: Math.floor(Math.random() * 151) + 1
+      };
       const message = {
         body,
         from: "Me"
       };
       this.setState({ messages: [message, ...this.state.messages] });
-      this.socket.emit("message", body);
-      event.target.value = "";
+      this.socket.emit("message", message);
+    } else {
+      this.state.messages.map((obj, index) => {
+        if (obj.from === "Bot" && index === 0) {
+          const result = obj.body.result;
+          const num = Math.floor([(event + parseInt(result)) / 3]);
+          const body = {
+            added: "[(" + event + "+" + parseInt(result) + ") / 3] = " + num,
+            result: num
+          };
+          const message = {
+            body,
+            from: "Me"
+          };
+          this.setState({ messages: [message, ...this.state.messages] });
+          this.socket.emit("message", message);
+        }
+        return true;
+      });
     }
   };
 
@@ -46,7 +66,10 @@ class App extends Component {
     return (
       <div>
         <h1>Message</h1>
-        <input type="text" placeholder="Enter a message" onKeyUp={this.send} />
+        <button onClick={() => this.send("start")}>Start</button>
+        <button onClick={() => this.send(-1)}>-1</button>
+        <button onClick={() => this.send(0)}>0</button>
+        <button onClick={() => this.send(1)}>1</button>
         {messages}
       </div>
     );
