@@ -17,15 +17,19 @@ io.on("connection", socket => {
   console.log("User connected");
 
   socket.on("message", result => {
-    console.log(result);
-    const body = calculateValueBot(result);
-    const message = {
-      body,
-      from: "Bot"
-    };
-    setTimeout(function() {
-      socket.emit("message", message);
-    }, 2000);
+    console.log("result:" + result.body.result);
+    if (result.body.result !== "User Wins") {
+      if (result.body.result !== "Equals") {
+        const body = calculateValueBot(result);
+        const message = {
+          body,
+          from: "Bot"
+        };
+        setTimeout(function() {
+          socket.emit("message", message);
+        }, 2000);
+      }
+    }
   });
 
   // disconnect is fired when a client leaves the server
@@ -41,10 +45,25 @@ server.listen(port, () => console.log(`Listening on port ${port}`));
 function calculateValueBot(body) {
   const random = Math.floor(Math.random() * 3) - 1;
   const num = Math.floor([(random + parseInt(body.body.result)) / 3]);
-  const resultNumber = {
-    added: "[(" + random + "+" + parseInt(body.body.result) + ") / 3] = " + num,
-    result: num
-  };
-  console.log(resultNumber);
-  return resultNumber;
+  if (num === 1) {
+    const resultNumber = {
+      added: "Bot Wins",
+      result: "Bot Wins"
+    };
+    return resultNumber;
+  } else if (num < 1) {
+    const resultNumber = {
+      added: "Equals",
+      result: "Equals"
+    };
+    return resultNumber;
+  } else {
+    const resultNumber = {
+      added:
+        "[(" + random + "+" + parseInt(body.body.result) + ") / 3] = " + num,
+      result: num
+    };
+    console.log(resultNumber);
+    return resultNumber;
+  }
 }

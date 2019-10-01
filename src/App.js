@@ -34,16 +34,40 @@ class App extends Component {
         if (obj.from === "Bot" && index === 0) {
           const result = obj.body.result;
           const num = Math.floor([(event + parseInt(result)) / 3]);
-          const body = {
-            added: "[(" + event + "+" + parseInt(result) + ") / 3] = " + num,
-            result: num
-          };
-          const message = {
-            body,
-            from: "Me"
-          };
-          this.setState({ messages: [message, ...this.state.messages] });
-          this.socket.emit("message", message);
+          if (num === 1) {
+            const body = {
+              added: "User Wins",
+              result: "User Wins"
+            };
+            const message = {
+              body,
+              from: "Me"
+            };
+            this.setState({ messages: [message, ...this.state.messages] });
+            this.socket.emit("message", message);
+          } else if (num < 1) {
+            const body = {
+              added: "Equals",
+              result: "Equals"
+            };
+            const message = {
+              body,
+              from: "Me"
+            };
+            this.setState({ messages: [message, ...this.state.messages] });
+            this.socket.emit("message", message);
+          } else {
+            const body = {
+              added: "[(" + event + "+" + parseInt(result) + ") / 3] = " + num,
+              result: num
+            };
+            const message = {
+              body,
+              from: "Me"
+            };
+            this.setState({ messages: [message, ...this.state.messages] });
+            this.socket.emit("message", message);
+          }
         }
         return true;
       });
