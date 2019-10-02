@@ -93,9 +93,17 @@ class App extends Component {
         <img src={Navbar} alt="navbar-logo" className="navbar" />
         <h1>Message</h1>
         <button onClick={() => this.send("start")}>Start</button>
-        <button onClick={() => this.send(-1)}>-1</button>
-        <button onClick={() => this.send(0)}>0</button>
-        <button onClick={() => this.send(1)}>1</button>
+        <div className="buttondiv">
+          <button className="bluebutton" onClick={() => this.send(-1)}>
+            -1
+          </button>
+          <button className="bluebutton" onClick={() => this.send(0)}>
+            0
+          </button>
+          <button className="bluebutton" onClick={() => this.send(1)}>
+            1
+          </button>
+        </div>
         {messages}
       </div>
     );
