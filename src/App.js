@@ -6,7 +6,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      messages: []
+      messages: [],
+      replyUser: []
     };
   }
 
@@ -18,11 +19,11 @@ class App extends Component {
   }
 
   send = event => {
-    console.log(event);
     if (event === "start") {
       const body = {
         added: "",
-        result: Math.floor(Math.random() * 151) + 1
+        result: Math.floor(Math.random() * 151) + 1,
+        event: event
       };
       const message = {
         body,
@@ -38,7 +39,8 @@ class App extends Component {
           if (num === 1) {
             const body = {
               added: "User Wins",
-              result: "User Wins"
+              result: "User Wins",
+              event: event
             };
             const message = {
               body,
@@ -49,7 +51,8 @@ class App extends Component {
           } else if (num < 1) {
             const body = {
               added: "Equals",
-              result: "Equals"
+              result: "Equals",
+              event: event
             };
             const message = {
               body,
@@ -60,7 +63,8 @@ class App extends Component {
           } else {
             const body = {
               added: "[(" + event + "+" + parseInt(result) + ") / 3] = " + num,
-              result: num
+              result: num,
+              event: event
             };
             const message = {
               body,
@@ -80,6 +84,12 @@ class App extends Component {
       return (
         <li key={index}>
           <b>
+            {message.from === "Me" ? (
+              <button className="replyUser">{message.body.event}</button>
+            ) : (
+              <button className="replyBot">{message.body.random}</button>
+            )}
+            <br></br>
             <div className="messagesdiv">
               {message.from}: {message.body.added}
             </div>

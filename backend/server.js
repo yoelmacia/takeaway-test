@@ -48,20 +48,23 @@ function calculateValueBot(body) {
   if (num === 1) {
     const resultNumber = {
       added: "Bot Wins",
-      result: "Bot Wins"
+      result: "Bot Wins",
+      random: random
     };
     return resultNumber;
   } else if (num < 1) {
     const resultNumber = {
       added: "Equals",
-      result: "Equals"
+      result: "Equals",
+      random: random
     };
     return resultNumber;
   } else {
     const resultNumber = {
       added:
         "[(" + random + "+" + parseInt(body.body.result) + ") / 3] = " + num,
-      result: num
+      result: num,
+      random: random
     };
     console.log(resultNumber);
     return resultNumber;
