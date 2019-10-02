@@ -80,9 +80,13 @@ class App extends Component {
       return (
         <li key={index}>
           <b>
-            {message.from}: {message.body.added}
+            <div className="messagesdiv">
+              {message.from}: {message.body.added}
+            </div>
             <br></br>
-            {message.from}: {message.body.result}
+            <div className="messagesdiv">
+              {message.from}: {message.body.result}
+            </div>
           </b>
         </li>
       );

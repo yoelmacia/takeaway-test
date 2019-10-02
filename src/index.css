@@ -51,3 +51,15 @@ body,
   bottom: 40px;
   width: 100%;
 }
+
+.messagesdiv {
+  position: relative;
+  left: 20%;
+  display: inline-block;
+  width: 60%;
+  height: 32px;
+  background-color: white;
+  margin-bottom: 10px;
+  font-weight: normal;
+  border: 1px solid white;
+}
