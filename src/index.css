@@ -45,6 +45,7 @@ body,
 }
 
 .buttondiv {
+  z-index: 1;
   display: flex;
   justify-content: space-evenly;
   position: fixed;
