@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
+import Navbar from "./images/navbar.png";
 
 class App extends Component {
   constructor() {
@@ -88,7 +89,8 @@ class App extends Component {
     });
 
     return (
-      <div>
+      <div className="container">
+        <img src={Navbar} alt="navbar-logo" className="navbar" />
         <h1>Message</h1>
         <button onClick={() => this.send("start")}>Start</button>
         <button onClick={() => this.send(-1)}>-1</button>
