@@ -82,42 +82,44 @@ class App extends Component {
   };
 
   render() {
-    const messages = this.state.messages.map((message, index) => {
-      return (
-        <li key={index}>
-          <b>
-            {message.from === "Me" ? (
-              <div>
-                <button className="replyUser">{message.body.event}</button>
-                <button className="iconUser">
-                  <img src={User} alt="user-icon" className="userLogo" />
-                </button>
+    const messages = this.state.messages
+      .slice(0)
+      .reverse()
+      .map((message, index) => {
+        return (
+          <li key={index}>
+            <b>
+              {message.from === "Me" ? (
+                <div>
+                  <button className="replyUser">{message.body.event}</button>
+                  <button className="iconUser">
+                    <img src={User} alt="user-icon" className="userLogo" />
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <button className="replyBot">{message.body.random}</button>
+                  <button className="iconBot">
+                    <img src={Bot} alt="bot-icon" className="botLogo" />
+                  </button>
+                </div>
+              )}
+              <br></br>
+              <div className="messagesdiv">
+                <div className="textdiv">{message.body.added}</div>
               </div>
-            ) : (
-              <div>
-                <button className="replyBot">{message.body.random}</button>
-                <button className="iconBot">
-                  <img src={Bot} alt="bot-icon" className="botLogo" />
-                </button>
+              <br></br>
+              <div className="messagesdiv">
+                <div className="textdiv">{message.body.result}</div>
               </div>
-            )}
-            <br></br>
-            <div className="messagesdiv">
-              <div className="textdiv">{message.body.added}</div>
-            </div>
-            <br></br>
-            <div className="messagesdiv">
-              <div className="textdiv">{message.body.result}</div>
-            </div>
-          </b>
-        </li>
-      );
-    });
+            </b>
+          </li>
+        );
+      });
 
     return (
       <div className="container">
         <img src={Navbar} alt="navbar-logo" className="navbar" />
-        <h1>Message</h1>
         <button onClick={() => this.send("start")}>Start</button>
         <div className="buttondiv">
           <button className="bluebutton" onClick={() => this.send(-1)}>
