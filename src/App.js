@@ -103,11 +103,11 @@ class App extends Component {
             )}
             <br></br>
             <div className="messagesdiv">
-              {message.from}: {message.body.added}
+              <div className="textdiv">{message.body.added}</div>
             </div>
             <br></br>
             <div className="messagesdiv">
-              {message.from}: {message.body.result}
+              <div className="textdiv">{message.body.result}</div>
             </div>
           </b>
         </li>

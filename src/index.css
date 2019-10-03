@@ -133,3 +133,8 @@ body,
   font-weight: normal;
   border: 1px solid white;
 }
+
+.textdiv {
+  padding: 6px;
+  margin-left: 10px;
+}
