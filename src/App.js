@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 import Navbar from "./images/navbar.png";
+import User from "./images/user.png";
+import Bot from "./images/bot.png";
 
 class App extends Component {
   constructor() {
@@ -85,9 +87,19 @@ class App extends Component {
         <li key={index}>
           <b>
             {message.from === "Me" ? (
-              <button className="replyUser">{message.body.event}</button>
+              <div>
+                <button className="replyUser">{message.body.event}</button>
+                <button className="iconUser">
+                  <img src={User} alt="user-icon" className="userLogo" />
+                </button>
+              </div>
             ) : (
-              <button className="replyBot">{message.body.random}</button>
+              <div>
+                <button className="replyBot">{message.body.random}</button>
+                <button className="iconBot">
+                  <img src={Bot} alt="bot-icon" className="botLogo" />
+                </button>
+              </div>
             )}
             <br></br>
             <div className="messagesdiv">

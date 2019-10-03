@@ -44,6 +44,46 @@ body,
   border-radius: 62%;
 }
 
+.userLogo {
+  height: 43px;
+}
+
+.botLogo {
+  height: 35px;
+  border-radius: 50%;
+  width: 35px;
+}
+
+.iconUser {
+  pointer-events: none;
+  background-color: rgb(165, 166, 169);
+  position: relative;
+  left: -17%;
+  bottom: -7px;
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 27px;
+  margin: 4px 2px;
+  border-radius: 62%;
+}
+
+.iconBot {
+  pointer-events: none;
+  background-color: rgb(165, 166, 169);
+  position: relative;
+  right: -63%;
+  bottom: -7px;
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 27px;
+  margin: 4px 2px;
+  border-radius: 62%;
+}
+
 .replyUser {
   pointer-events: none;
   background-color: rgb(73, 170, 216);
