@@ -139,7 +139,7 @@ class App extends Component {
 
     return (
       <div className="container">
-        <Modal />
+        <Modal start={this.send} />
         <img src={Navbar} alt="navbar-logo" className="navbar" />
         <ul ref="messageList" className="nav">
           {messages}
