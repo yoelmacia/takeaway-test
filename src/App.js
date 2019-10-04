@@ -4,6 +4,7 @@ import Navbar from "./images/navbar.png";
 import User from "./images/user.png";
 import Bot from "./images/bot.png";
 import ReactDOM from "react-dom";
+import Modal from "./components/modal";
 
 class App extends Component {
   constructor() {
@@ -138,11 +139,11 @@ class App extends Component {
 
     return (
       <div className="container">
+        <Modal />
         <img src={Navbar} alt="navbar-logo" className="navbar" />
         <ul ref="messageList" className="nav">
           {messages}
         </ul>
-        <button onClick={() => this.send("start")}>Start</button>
         <div className="buttondiv">
           <button className="bluebutton" onClick={() => this.send(-1)}>
             -1

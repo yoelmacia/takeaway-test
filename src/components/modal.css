@@ -1,0 +1,24 @@
+.modal {
+  background-color: rgb(73, 170, 216);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.newgamebutton {
+  font-size: 25px;
+  background: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 100px;
+  width: 243px;
+  height: 56px;
+}
+
+.newgamediv {
+  font-size: 65px;
+  color: white;
+}
