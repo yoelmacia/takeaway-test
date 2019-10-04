@@ -3,6 +3,7 @@ import socketIOClient from "socket.io-client";
 import Navbar from "./images/navbar.png";
 import User from "./images/user.png";
 import Bot from "./images/bot.png";
+import ReactDOM from "react-dom";
 
 class App extends Component {
   constructor() {
@@ -17,8 +18,22 @@ class App extends Component {
     this.socket = socketIOClient("http://localhost:4001");
     this.socket.on("message", message => {
       this.setState({ messages: [message, ...this.state.messages] });
+      this.scrollToElement();
     });
   }
+
+  componentDidUpdate() {
+    this.scrollToElement();
+  }
+
+  scrollToElement = () => {
+    const { messageList } = this.refs;
+    const scrollHeight = messageList.scrollHeight;
+    const height = messageList.clientHeight;
+    const maxScrollTop = scrollHeight - height;
+    ReactDOM.findDOMNode(messageList).scrollTop =
+      maxScrollTop > 0 ? maxScrollTop : 0;
+  };
 
   send = event => {
     if (event === "start") {
@@ -33,6 +48,7 @@ class App extends Component {
       };
       this.setState({ messages: [message, ...this.state.messages] });
       this.socket.emit("message", message);
+      this.scrollToElement();
     } else {
       this.state.messages.map((obj, index) => {
         if (obj.from === "Bot" && index === 0) {
@@ -49,6 +65,7 @@ class App extends Component {
               from: "Me"
             };
             this.setState({ messages: [message, ...this.state.messages] });
+            this.scrollToElement();
             this.socket.emit("message", message);
           } else if (num < 1) {
             const body = {
@@ -61,6 +78,7 @@ class App extends Component {
               from: "Me"
             };
             this.setState({ messages: [message, ...this.state.messages] });
+            this.scrollToElement();
             this.socket.emit("message", message);
           } else {
             const body = {
@@ -73,6 +91,7 @@ class App extends Component {
               from: "Me"
             };
             this.setState({ messages: [message, ...this.state.messages] });
+            this.scrollToElement();
             this.socket.emit("message", message);
           }
         }
@@ -120,6 +139,9 @@ class App extends Component {
     return (
       <div className="container">
         <img src={Navbar} alt="navbar-logo" className="navbar" />
+        <ul ref="messageList" className="nav">
+          {messages}
+        </ul>
         <button onClick={() => this.send("start")}>Start</button>
         <div className="buttondiv">
           <button className="bluebutton" onClick={() => this.send(-1)}>
@@ -132,7 +154,6 @@ class App extends Component {
             1
           </button>
         </div>
-        {messages}
       </div>
     );
   }
