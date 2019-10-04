@@ -47,7 +47,6 @@ class App extends Component {
         body,
         from: "Me"
       };
-      this.setState({ messages: [message, ...this.state.messages] });
       this.socket.emit("message", message);
       this.scrollToElement();
     } else {

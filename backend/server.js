@@ -25,9 +25,15 @@ io.on("connection", socket => {
           body,
           from: "Bot"
         };
-        setTimeout(function() {
-          socket.emit("message", message);
-        }, 2000);
+        if (result.body.event === "start") {
+          setTimeout(function() {
+            socket.emit("message", message);
+          }, 750);
+        } else {
+          setTimeout(function() {
+            socket.emit("message", message);
+          }, 2000);
+        }
       }
     }
   });
