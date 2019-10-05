@@ -3,8 +3,12 @@ import socketIOClient from "socket.io-client";
 import Navbar from "./images/navbar.png";
 import User from "./images/user.png";
 import Bot from "./images/bot.png";
+import Lose from "./images/lose.png";
+import Win from "./images/win.png";
+import Equals from "./images/equals.png";
 import ReactDOM from "react-dom";
 import Modal from "./components/modal";
+import ModalFinal from "./components/ModalFinal";
 
 class App extends Component {
   constructor() {
@@ -138,6 +142,37 @@ class App extends Component {
 
     return (
       <div className="container">
+        {this.state.messages.map((message, index) => {
+          if (message.body.result === "User Wins") {
+            return (
+              <ModalFinal
+                image={Win}
+                message="You win"
+                start={this.send}
+                key={index}
+              />
+            );
+          } else if (message.body.result === "Bot Wins") {
+            return (
+              <ModalFinal
+                image={Lose}
+                message="You lose"
+                start={this.send}
+                key={index}
+              />
+            );
+          } else if (message.body.result === "Equals") {
+            return (
+              <ModalFinal
+                image={Equals}
+                message="Equals"
+                start={this.send}
+                key={index}
+              />
+            );
+          }
+          return true;
+        })}
         <Modal start={this.send} />
         <img src={Navbar} alt="navbar-logo" className="navbar" />
         <ul ref="messageList" className="nav">

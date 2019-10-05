@@ -1,0 +1,17 @@
+.modalfinal {
+  background-color: rgb(73, 170, 216);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0.9;
+}
+
+.image {
+  height: 350px;
+  width: 350px;
+}
