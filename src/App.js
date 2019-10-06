@@ -7,7 +7,7 @@ import Lose from "./images/lose.png";
 import Win from "./images/win.png";
 import Equals from "./images/equals.png";
 import ReactDOM from "react-dom";
-import Modal from "./components/modal";
+import Modal from "./components/Modal";
 import ModalFinal from "./components/ModalFinal";
 
 class App extends Component {
