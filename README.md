@@ -1,4 +1,4 @@
-# Take-away food test
+# Takeaway test
 
 This is a test code to create a game for takeaway.com
 
@@ -30,7 +30,7 @@ The application has several components like Modal, ModalFinal and Buttons and a 
 
 You could create a message component but I have had problems with the use of ref, as this is deprecated.
 
-##### Version 2.0
+#### Version 2.0
 
 Implement Redux to save the status.
 
