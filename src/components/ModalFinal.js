@@ -4,6 +4,7 @@ import "./ModalFinal.css";
 export default class ModalFinal extends React.Component {
   closeModal() {
     document.getElementById("modalfinal").style.visibility = "hidden";
+    this.props.reset();
     this.props.start("start");
   }
   render() {

@@ -14,10 +14,14 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      messages: [],
-      replyUser: []
+      messages: []
     };
+    this.baseState = this.state;
   }
+
+  resetState = () => {
+    this.setState(this.baseState);
+  };
 
   componentDidMount() {
     this.socket = socketIOClient("http://localhost:4001");
@@ -146,6 +150,7 @@ class App extends Component {
           if (message.body.result === "User Wins") {
             return (
               <ModalFinal
+                reset={this.resetState}
                 image={Win}
                 message="You win"
                 start={this.send}
@@ -155,6 +160,7 @@ class App extends Component {
           } else if (message.body.result === "Bot Wins") {
             return (
               <ModalFinal
+                reset={this.resetState}
                 image={Lose}
                 message="You lose"
                 start={this.send}
@@ -164,6 +170,7 @@ class App extends Component {
           } else if (message.body.result === "Equals") {
             return (
               <ModalFinal
+                reset={this.resetState}
                 image={Equals}
                 message="Equals"
                 start={this.send}
