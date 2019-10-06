@@ -17,7 +17,6 @@ io.on("connection", socket => {
   console.log("User connected");
 
   socket.on("message", result => {
-    console.log("result:" + result.body.result);
     if (result.body.result !== "User Wins") {
       if (result.body.result !== "Equals") {
         const body = calculateValueBot(result);
@@ -72,7 +71,6 @@ function calculateValueBot(body) {
       result: num,
       random: random
     };
-    console.log(resultNumber);
     return resultNumber;
   }
 }
