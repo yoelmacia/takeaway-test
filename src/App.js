@@ -9,6 +9,7 @@ import Equals from "./images/equals.png";
 import ReactDOM from "react-dom";
 import Modal from "./components/Modal";
 import ModalFinal from "./components/ModalFinal";
+import Buttons from "./components/Buttons";
 
 class App extends Component {
   constructor() {
@@ -185,17 +186,7 @@ class App extends Component {
         <ul ref="messageList" className="nav">
           {messages}
         </ul>
-        <div className="buttondiv">
-          <button className="bluebutton" onClick={() => this.send(-1)}>
-            -1
-          </button>
-          <button className="bluebutton" onClick={() => this.send(0)}>
-            0
-          </button>
-          <button className="bluebutton" onClick={() => this.send(1)}>
-            1
-          </button>
-        </div>
+        <Buttons send={this.send} />
       </div>
     );
   }
