@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 import Navbar from "./images/navbar.png";
-import User from "./images/user.png";
-import Bot from "./images/bot.png";
 import Lose from "./images/lose.png";
 import Win from "./images/win.png";
 import Equals from "./images/equals.png";
@@ -10,6 +8,7 @@ import ReactDOM from "react-dom";
 import Modal from "./components/Modal";
 import ModalFinal from "./components/ModalFinal";
 import Buttons from "./components/Buttons";
+import Messages from "./components/Messages";
 
 class App extends Component {
   constructor() {
@@ -110,41 +109,6 @@ class App extends Component {
   };
 
   render() {
-    const messages = this.state.messages
-      .slice(0)
-      .reverse()
-      .map((message, index) => {
-        return (
-          <li key={index}>
-            <b>
-              {message.from === "Me" ? (
-                <div>
-                  <button className="replyUser">{message.body.event}</button>
-                  <button className="iconUser">
-                    <img src={User} alt="user-icon" className="userLogo" />
-                  </button>
-                </div>
-              ) : (
-                <div>
-                  <button className="replyBot">{message.body.random}</button>
-                  <button className="iconBot">
-                    <img src={Bot} alt="bot-icon" className="botLogo" />
-                  </button>
-                </div>
-              )}
-              <br></br>
-              <div className="messagesdiv">
-                <div className="textdiv">{message.body.added}</div>
-              </div>
-              <br></br>
-              <div className="messagesdiv">
-                <div className="textdiv">{message.body.result}</div>
-              </div>
-            </b>
-          </li>
-        );
-      });
-
     return (
       <div className="container">
         {this.state.messages.map((message, index) => {
@@ -183,9 +147,7 @@ class App extends Component {
         })}
         <Modal start={this.send} />
         <img src={Navbar} alt="navbar-logo" className="navbar" />
-        <ul ref="messageList" className="nav">
-          {messages}
-        </ul>
+        <Messages ref="messageList" messages={this.state.messages} />
         <Buttons send={this.send} />
       </div>
     );

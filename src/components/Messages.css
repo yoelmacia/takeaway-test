@@ -1,0 +1,92 @@
+.nav {
+  height: 35em;
+  padding: 0;
+  margin: 0;
+  overflow: scroll;
+}
+
+.iconUser {
+  pointer-events: none;
+  background-color: rgb(165, 166, 169);
+  position: relative;
+  left: -17%;
+  bottom: -11px;
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 27px;
+  margin: 4px 2px;
+  border-radius: 62%;
+}
+
+.iconBot {
+  pointer-events: none;
+  background-color: rgb(165, 166, 169);
+  position: relative;
+  right: -63%;
+  bottom: -11px;
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 27px;
+  margin: 4px 2px;
+  border-radius: 62%;
+}
+
+.replyUser {
+  pointer-events: none;
+  background-color: rgb(73, 170, 216);
+  position: relative;
+  left: 18%;
+  bottom: -5px;
+  width: 70px;
+  height: 70px;
+  color: white;
+  font-weight: bold;
+  font-size: 27px;
+  margin: 4px 2px;
+  border-radius: 62%;
+}
+.replyBot {
+  pointer-events: none;
+  background-color: rgb(73, 170, 216);
+  position: relative;
+  left: 62%;
+  bottom: -5px;
+  width: 70px;
+  height: 70px;
+  color: white;
+  font-weight: bold;
+  font-size: 27px;
+  margin: 4px 2px;
+  border-radius: 62%;
+}
+
+.userLogo {
+  height: 43px;
+}
+
+.botLogo {
+  height: 35px;
+  border-radius: 50%;
+  width: 35px;
+}
+
+.messagesdiv {
+  position: relative;
+  left: 20%;
+  display: inline-block;
+  width: 60%;
+  height: 32px;
+  background-color: white;
+  margin-bottom: 10px;
+  font-weight: normal;
+  border: 1px solid white;
+}
+
+.textdiv {
+  padding: 6px;
+  margin-left: 10px;
+}
