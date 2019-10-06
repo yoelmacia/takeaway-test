@@ -8,7 +8,8 @@ import ReactDOM from "react-dom";
 import Modal from "./components/Modal";
 import ModalFinal from "./components/ModalFinal";
 import Buttons from "./components/Buttons";
-import Messages from "./components/Messages";
+import User from "./images/user.png";
+import Bot from "./images/bot.png";
 
 class App extends Component {
   constructor() {
@@ -109,6 +110,40 @@ class App extends Component {
   };
 
   render() {
+    const messages = this.state.messages
+      .slice(0)
+      .reverse()
+      .map((message, index) => {
+        return (
+          <li key={index}>
+            <b>
+              {message.from === "Me" ? (
+                <div>
+                  <button className="replyUser">{message.body.event}</button>
+                  <button className="iconUser">
+                    <img src={User} alt="user-icon" className="userLogo" />
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <button className="replyBot">{message.body.random}</button>
+                  <button className="iconBot">
+                    <img src={Bot} alt="bot-icon" className="botLogo" />
+                  </button>
+                </div>
+              )}
+              <br></br>
+              <div className="messagesdiv">
+                <div className="textdiv">{message.body.added}</div>
+              </div>
+              <br></br>
+              <div className="messagesdiv">
+                <div className="textdiv">{message.body.result}</div>
+              </div>
+            </b>
+          </li>
+        );
+      });
     return (
       <div className="container">
         {this.state.messages.map((message, index) => {
@@ -147,7 +182,9 @@ class App extends Component {
         })}
         <Modal start={this.send} />
         <img src={Navbar} alt="navbar-logo" className="navbar" />
-        <Messages ref="messageList" messages={this.state.messages} />
+        <ul ref="messageList" className="nav">
+          {messages}
+        </ul>
         <Buttons send={this.send} />
       </div>
     );
